@@ -1,5 +1,5 @@
 import React, { useContext} from "react";
-//import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useWindowDimensions } from "react-native";
 import { UserNavigator } from "./UserNavigator";
@@ -26,9 +26,9 @@ const Navigator = () => {
         headerShown: false, //Desaparece el icono, se muestra deslizandolo
         drawerType: width >= 768 ? 'permanent' : 'front', 
         drawerPosition: "right",
-        overlayColor: "transparent",
+        // overlayColor: "transparent",
         drawerStyle: {
-          backgroundColor: 'rgba(200, 200, 200, 0.99)',
+          backgroundColor: 'white',
           width: width * 0.7,
         }
       }}

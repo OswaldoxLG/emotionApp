@@ -1,35 +1,39 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { appTheme } from '../themes/appTheme';
-import { FontAwesome } from '@expo/vector-icons';
 
-interface Props {
-  iconName?: keyof typeof FontAwesome.glyphMap;
-  onPress?: () => void;
+interface BtnForm{
   title: string;
-  value?: string;
+  state: string;
+  action: () => void;
 }
 
-export const DefaultBtn = ({ onPress, title, iconName, value  }: Props) => {
+export const BtnOption = ( { title, state, action }: BtnForm ) => {
+
+  const [isSelected, setIsSelected ] = useState<boolean>(false);
+
+  const handlePress = () => {
+    setIsSelected(!isSelected)
+    action();
+  }
+
+  const gradientColors : any = isSelected
+  ? ['#ffffff', '#007BFF'] 
+  : ['#ffffff', '#ffc167']; 
+
 
   return (
       <TouchableOpacity
-      onPress={ onPress }
+      onPress={ handlePress }
       style={style.mainContainer}
       >
       <LinearGradient
-        colors={['#ffffff', '#ffc167']}
+        colors={gradientColors}
         start={{ x: 1, y: 1 }}
         end={{ x: 0, y: 1 }}
         style={appTheme.inputGradient}
       />
-        <FontAwesome
-          style={ appTheme.icon }
-          name={ iconName }
-          size={20}
-          color='white'
-        />
         <View
           style={{
             ...style.btnContainer

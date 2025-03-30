@@ -1,19 +1,19 @@
 import { useReducer, useState, useEffect, useContext } from "react";
 import { emotionApi } from "../api/emotionApi";
-import { LoginResponse } from "../interfaces/usuarioInterfaces";
+import { LoginResponse } from "../interfaces/userInterfaces";
 import { AuthContext } from "../context/AuthContext";
 
 export interface SignUpData{
   email: string;
   username: string;
-  pass: string;
+  password: string;
   repeatPass: string;
 }
 
 const initialSignUpData: SignUpData = {
   email: '',
   username: '',
-  pass: '',
+  password: '',
   repeatPass: ''
 }
 
@@ -47,7 +47,7 @@ export const useSignUp = () => {
   const handleSignUp = async () => {
     setLoading(true);
 
-    if (state.pass !== state.repeatPass) {
+    if (state.password !== state.repeatPass) {
       alert('Las contraseñas no coinciden');
       setLoading(false);
       return;
@@ -58,7 +58,7 @@ export const useSignUp = () => {
     const dataBody = {
       email: state.email,
       username: state.username,
-      pass: state.pass
+      password: state.password
     }
 
     try{
@@ -66,7 +66,7 @@ export const useSignUp = () => {
 
       ( response.data !== false) && ( () => {
         signIn();
-        changeProfileImage( response.data.imagenPerfil);
+        changeProfileImage( response.data.image);
         changeUserName( response.data.username );
         changeRole( response.data.rol );
         setRequest( response.data );

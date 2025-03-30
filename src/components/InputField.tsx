@@ -9,12 +9,14 @@ interface Props {
   placeholder: string;
   keyboardType: KeyboardTypeOptions;
   secureTextEntry?: boolean;
+  onChangeText: ( text: string ) => void;
+  value: string;
 }
-export const InputField = ({ iconName, placeholder, keyboardType, secureTextEntry } : Props) => {
+export const InputField = ({ iconName, placeholder, keyboardType, secureTextEntry, onChangeText, value } : Props) => {
   return (
     <View style={appTheme.inputContainer}>
       <LinearGradient
-        colors={['#ffffff', '#3b5998']}
+        colors={['#ffffff', '#ffc167']}
         start={{ x: 1, y: 1 }}
         end={{ x: 0, y: 1 }}
         style={appTheme.inputGradient}
@@ -27,6 +29,8 @@ export const InputField = ({ iconName, placeholder, keyboardType, secureTextEntr
       />
       <TextInput
         style={appTheme.gradientInput}
+        value={value}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}

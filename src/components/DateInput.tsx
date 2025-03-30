@@ -40,7 +40,7 @@ export const  DateInput = ({ iconName, onChange } : Props) => {
         )
       }
       <LinearGradient
-        colors={['#ffffff', '#3b5998']}
+        colors={['#ffffff', '#ffc167']}
         start={{ x: 1, y: 1 }}
         end={{ x: 0, y: 1 }}
         style={appTheme.inputGradient}

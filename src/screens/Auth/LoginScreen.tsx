@@ -1,15 +1,20 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, Text, TextInput, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TextInput, StyleSheet, StatusBar, Image, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SendButton } from '../../components/SendButton';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackAuthParams } from '../../navigator/AuthNavigator';
 import { useLogin } from '../../hooks/useLogin';
 import { appTheme } from '../../themes/appTheme';
+
+const { width, height } = Dimensions.get('window');
+
 export const LoginScreen = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackAuthParams>>();
 
   const {
     loading, 
@@ -28,16 +33,18 @@ export const LoginScreen = () => {
         hidden={ true }
       /> */}
 
-      <View style={ styles.box1 }>
-        <View
-          style={{
-            ...styles.circle1,
-          }}
-        />
+      <View style={styles.box1}>
+        <View style={styles.circle1} />
         <LinearGradient
-          colors={['#4c669f', '#3b5998', '#192f6a']}
+          colors={['#ff9800', '#ff5800', '#ff8300', '#ff9800']}
           style={styles.circleGradient}
-        />
+        >
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/logo2.png')}
+          />
+          <Text style={styles.nameLogo}>E-MOTION</Text>
+        </LinearGradient>
       </View>
 
       <Text 
@@ -47,16 +54,16 @@ export const LoginScreen = () => {
       </Text>
 
       <View style={ styles.box2 }>
-      {
+      {/* {
         (!request) &&
         <Text style={appTheme.subtitle}>
           { 'La contraseña fue incorrecta \n' }
           { 'Envío de datos faltantes' }
         </Text>
-      }
+      } */}
       <View style={appTheme.inputContainer}>
           <LinearGradient
-            colors={['#ffffff', '#3b5998', ]}
+            colors={['#ffffff', '#ffc167']}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 1 }}
             style={appTheme.inputGradient}
@@ -82,7 +89,7 @@ export const LoginScreen = () => {
 
         <View style={appTheme.inputContainer}>
           <LinearGradient
-            colors={['#ffffff', '#3b5998', ]}
+            colors={['#ffffff', '#ffc167']}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 1 }}
             style={appTheme.inputGradient}
@@ -97,8 +104,8 @@ export const LoginScreen = () => {
             style={{
               ...appTheme.gradientInput
             }}
-            value={ state.pass }
-            onChangeText={ (text) => handleInputChange('pass', text) }
+            value={ state.password }
+            onChangeText={ (text) => handleInputChange('password', text) }
             placeholder="Contraseña"
             secureTextEntry={ true }
             placeholderTextColor="black"
@@ -108,7 +115,7 @@ export const LoginScreen = () => {
         
         <SendButton
           title='INGRESAR'
-          background='rgb(21, 63, 101)'
+          background='rgb(255,152,0)'
           onPress={ handleLogin }
           disabled={ !loading }
         />
@@ -117,9 +124,10 @@ export const LoginScreen = () => {
           ¿No tienes cuenta?{ ' ' }
           <Text 
             style={{ 
-              color: "rgb(21, 63, 101)", 
+              color: "blue", 
               textDecorationLine: 'underline',
               fontWeight: 'bold',
+              fontFamily: 'sans-serif',
               marginLeft: 10
             }} 
             onPress={() => navigation.navigate('RegisterScreen')}>
@@ -141,6 +149,18 @@ const styles = StyleSheet.create({
     flex: 6,
     marginTop: 20,
   },
+  logo: {
+    top: height * 0.18,
+    width: width * 0.8,
+    height: width * 0.8
+  },
+  nameLogo: {
+    fontFamily: 'sans-serif-thin',
+    top: height * 0.05,
+    fontSize: width * 0.07,
+    fontWeight: '700',
+    color: 'white'
+  },
   circle1: {
     width: 490,
     height: 490,
@@ -150,15 +170,11 @@ const styles = StyleSheet.create({
   circleGradient: {
     width: 490,
     height: 490,
-    borderColor: 'rgb(0, 0, 0)',
     borderRadius: 300,
-    borderWidth: 1,
     top: -263,
     position: 'absolute',
-    shadowColor: 'rgb(181, 112, 27)',
-    shadowOffset: { width: 0, height: 2},
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    elevation: 10,
+    elevation: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })

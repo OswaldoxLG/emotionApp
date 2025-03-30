@@ -4,11 +4,12 @@ import { DashboardScreen } from "../screens/Admin/DashboardScreen";
 import { IndexUserScreen } from "../screens/Admin/IndexUserScreen";
 import { FormUserScreen } from "../screens/Admin/FormUserScreen";
 import { ShowUserScreen } from "../screens/Admin/ShowUserScreen";
+import { UserResponse } from "../interfaces/userInterfaces";
 
 export type RootStackAdminParams = {
   DashboardScreen: undefined;
   IndexUserScreen: undefined;
-  FormUserScreen: undefined;
+  FormUserScreen: { user: UserResponse };
   ShowUserScreen: undefined;
 }
 export const AdminNavigator = () => {

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native';
+import { AuthContext } from "../../context/AuthContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { appTheme } from "../../themes/appTheme";
 export const HomeUserScreen = () => {
   
   const  {width } = useWindowDimensions();
+
+  const { authState } = useContext(AuthContext);
 
   return (
     <View style={{
@@ -18,7 +21,11 @@ export const HomeUserScreen = () => {
           marginBottom: 10,
         }}
       >
-        Hola
+        {
+          ( authState.isLoggedIn )
+          ? `Bienvenido a E-Motion, ${authState.userName}`
+          : "Bienvenido a E-Motion"
+        }
       </Text>
       </View>
       <View style={styles.box2}>
@@ -95,10 +102,10 @@ export const HomeUserScreen = () => {
         >
           <TouchableOpacity style={styles.gradient}>
             <Image
-              source={require('../../../assets/icon.png')} 
+              source={require('../../../assets/logo2.png')} 
               style={styles.image}
             />
-            <Text style={styles.text}>Luminux</Text>
+            <Text style={styles.textLu}>Luminux</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
@@ -139,15 +146,22 @@ const styles = StyleSheet.create({
     height: "50%",
   },
   image: {
-    width: 80,
-    height: 80,
-    marginBottom: 5,
+    width: 200,
+    height: 200,
+    top: -10
   },
   text: {
     fontSize: 18, 
     fontWeight: "500",
     textAlign: "center",
     marginBottom: 30,  
+    marginHorizontal: 15,
+  },
+  textLu: {
+    fontSize: 18, 
+    fontWeight: "500",
+    textAlign: "center",
+    bottom: 70,
     marginHorizontal: 15,
   },
   gradient: {

@@ -1,12 +1,12 @@
 import React, { useContext} from "react";
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-// import { AuthContext } from "../context/AuthContext";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { AuthContext } from "../context/AuthContext";
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer' 
 import { appTheme } from "../themes/appTheme";
-import { SendButton } from "./SendButton";
+import { DefaultBtn } from "./DefaultBtn";
 export const DrawerMenu = ( { navigation } : DrawerContentComponentProps ) => {
   
-  // const { authState, logout } = useContext(AuthContext);
+  const { authState, logOut } = useContext(AuthContext);
 
   const assets: string = './../../assets/';
 
@@ -20,8 +20,12 @@ export const DrawerMenu = ( { navigation } : DrawerContentComponentProps ) => {
         >
         <Image
         style={ appTheme.avatar }
-        source= {require( assets + 'icon.png')}
-
+        source= 
+        {
+          ( authState.isLoggedIn )
+          ? { uri: `data:image/jpeg;base64,${authState.profileImage}`}
+          :require( assets + 'user.jpg')
+        }
         />
         <Text
           style={{
@@ -29,12 +33,8 @@ export const DrawerMenu = ( { navigation } : DrawerContentComponentProps ) => {
             marginTop: 10
           }}
         >
+          {`Hola, ${authState.userName}`}
         </Text>
-          <SendButton
-            title="Cerrar Sesión"
-            onPress={ () => {} }
-            background="gray"
-          />
         </View>
         <View
           style={ appTheme.menuContainer }
@@ -65,7 +65,20 @@ export const DrawerMenu = ( { navigation } : DrawerContentComponentProps ) => {
               Panel de administración
             </Text>
           </TouchableOpacity>
-          
+          {
+            ( !authState.isLoggedIn ) 
+            ?
+            <DefaultBtn
+            onPress={ () => navigation.navigate('LoginScreen') }
+            title='INICIA SESIÓN'
+            />
+            :
+            <DefaultBtn
+            onPress={ () => logOut() }
+            iconName='sign-out'
+            title='SALIR'
+          />
+          }
         </View>
       </DrawerContentScrollView>
     

@@ -3,16 +3,18 @@ import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { CrudCard } from "../../components/CrudCard";
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackAdminParams } from "../../navigator/AdminNavigator";
 import { appTheme } from "../../themes/appTheme";
 export const DashboardScreen = () => {
 
-const navigation = useNavigation();
+const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
 
   return (
 
       <View style={{ flex: 1 }}>
         <LinearGradient
-          colors={['#B3FF19', '#2196F3']}
+          colors={['#00e7ff', '#ff9800']}
           start={{ x: 2, y: 2 }}
           end={{ x: 0, y: 0 }}
           style={styles.box1}
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   },
   box2:{
     flex: 7,
-    backgroundColor: "rgb(	237, 244, 254)",
+    backgroundColor: "white",
     alignItems: 'center',
   }
 })

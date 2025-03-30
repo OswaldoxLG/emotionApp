@@ -5,7 +5,7 @@ import { FontAwesome } from "@expo/vector-icons";
 interface Props {
   onPress: () => void;
   title: string;
-  icon: string;
+  icon: keyof typeof FontAwesome.glyphMap;
 }
 export const CrudCard = ({ onPress, title, icon }: Props) => {
 
@@ -39,7 +39,7 @@ export const CrudCard = ({ onPress, title, icon }: Props) => {
 const styles = StyleSheet.create({
   CardContainer:{
     justifyContent: 'center',
-    backgroundColor: 'rgb(21, 63, 101)',
+    backgroundColor: 'rgb(255,152,0)',
     marginHorizontal: 10,
     height: 90,
     marginTop: 30,
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   title: {
     marginHorizontal: 25,
-    color: "white",
-    fontSize: 18,
+    color: "black",
+    fontSize: 20,
     fontWeight: "bold"
   },
   icon:{

@@ -1,16 +1,16 @@
 import { useReducer, useState, useEffect, useContext } from "react";
 import { emotionApi } from "../api/emotionApi";
-import { LoginResponse } from "../interfaces/usuarioInterfaces";
+import { LoginResponse } from "../interfaces/userInterfaces";
 import { AuthContext } from "../context/AuthContext";
 
 export interface LoginData{
   email: string;
-  pass: string;
+  password: string;
 }
 
 const initialLoginData: LoginData = {
   email: '',
-  pass: ''
+  password: ''
 }
 
 type Action = { type: 'handleInputChange', payload: { fieldName: keyof LoginData, value: string } }
@@ -47,7 +47,7 @@ export const useLogin = () => {
 
     const dataBody = {
       email: state.email,
-      pass: state.pass
+      password: state.password
     }
 
     try{
@@ -55,7 +55,7 @@ export const useLogin = () => {
 
       ( response.data !== false) && ( () => {
         signIn();
-        changeProfileImage( response.data.imagenPerfil);
+        changeProfileImage( response.data.image);
         changeUserName( response.data.username );
         changeRole( response.data.rol );
         setRequest( response.data );

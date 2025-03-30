@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { appTheme } from '../themes/appTheme';
 
 interface Props {
-    title: string, 
+    iconName: keyof typeof FontAwesome.glyphMap;
     position: 'bottom_right' | 'bottom_left';
     onPress: () => void;
   }
 
-
-export const BtnNav = ( {title, position, onPress} : Props ) => {
+export const BtnNav = ( {iconName, position, onPress} : Props ) => {
 
   const btnPosition = (position == 'bottom_right') 
     ? style.BtnLocationBR
@@ -17,16 +18,18 @@ export const BtnNav = ( {title, position, onPress} : Props ) => {
   return(
     <TouchableOpacity
     onPress={ onPress }
-    style = { btnPosition }
+    style = {btnPosition}
+    activeOpacity={0.9}
     >
       <View
-        style = { style.Btn}
+        style = {style.Btn}
       >
-        <Text
-          style = { style.BtnText }
-        >
-          { title }
-        </Text>
+        <FontAwesome
+          style={style.icon}
+          name={iconName}
+          size={45}
+          color='white'
+        />
       </View>
     </TouchableOpacity>
   );
@@ -36,24 +39,23 @@ const style = StyleSheet.create({
   BtnLocationBR: {
     position: "absolute",
     bottom: -110,
-    right: 20
+    right: 20,
   },
   BtnLocationBL: {
     position: "absolute",
     bottom: -110,
-    left: 20  
+    left: 20,
   },
   Btn:{
-    backgroundColor: "rgb(21, 63, 101)",
+    backgroundColor: 'rgba(255, 153, 0, 0.9)',
     width: 58,
     height: 58, 
-    borderRadius: 100, 
+    borderRadius: 100,
   },
-  BtnText: {
-    color: 'white',
-    fontSize: 35,
-    textAlign: 'center',
-    fontWeight: 'bold',
+  icon:{
+    position: "absolute",
+    top: 6,
+    left: 10,
+    opacity: 1,
   }
-
 });

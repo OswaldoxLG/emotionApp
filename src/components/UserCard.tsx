@@ -2,11 +2,17 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackAdminParams } from "../navigator/AdminNavigator";
+import { UserResponse } from "../interfaces/userInterfaces";
 
+interface Props {
+  user: UserResponse
+}
 
-export const UserCard = () => {
+export const UserCard = ( { user }: Props ) => {
   
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
   const { width } = Dimensions.get('window');
 
   return (

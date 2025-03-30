@@ -8,12 +8,11 @@ export const appTheme = StyleSheet.create({
   },
   globalContainer:{
     alignItems: "center",
-    backgroundColor: "rgb(	237, 244, 254)",
     flex: 1,
     justifyContent: "center",
   },
   title:{
-    color: "rgb(21, 63, 101)",
+    color: "black",
     fontFamily: "sans-serif",
     fontSize: 38, 
     fontWeight: "bold",
@@ -22,7 +21,7 @@ export const appTheme = StyleSheet.create({
     marginTop: 10
   },
   subtitle:{
-    color: "rgb(21, 63, 101)",
+    color: "black",
     fontFamily: "sans-serif",
     fontSize: 18, 
     fontWeight: "500",
@@ -48,11 +47,12 @@ export const appTheme = StyleSheet.create({
   gradientInput: {
     textDecorationLine: "none",
     textAlign: "center",
+    fontFamily: 'sans-serif',
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: "700",
     color: 'black',
     borderRadius: 10,
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderColor: "black",
     width: '100%',
     height: '100%',
@@ -66,12 +66,12 @@ export const appTheme = StyleSheet.create({
   avatar:{
     height: 200,
     width: 200,
-    borderColor: "white",
-    borderWidth: 5, 
+    borderColor: "black",
+    borderWidth: 1.5, 
     borderRadius: 100,
   },
   menuContainer:{
-    alignItems: "center",
+    alignItems: 'flex-start',
     marginHorizontal: 10,
     marginVertical: 10,
   },
@@ -79,8 +79,9 @@ export const appTheme = StyleSheet.create({
     marginVertical: 10,
   },
   texBtn:{
-    fontSize: 20,
+    fontSize: 19,
+    fontFamily: 'sans-serif',
     color:"black",
-    fontWeight: "bold"
+    fontWeight: "400"
   }
 });

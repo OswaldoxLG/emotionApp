@@ -10,7 +10,7 @@ import { appTheme } from '../../themes/appTheme';
 
 export const RegisterScreen = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const {
     loading,
@@ -24,7 +24,6 @@ export const RegisterScreen = () => {
     <ScrollView
       style={{
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: "rgb(	237, 244, 254)",
       }}
     >
 
@@ -40,7 +39,7 @@ export const RegisterScreen = () => {
 
         <View style={appTheme.inputContainer}>
             <LinearGradient
-              colors={['#ffffff', '#3b5998', ]}
+              colors={['#ffffff', '#ffc167']}
               start={{ x: 1, y: 1 }}
               end={{ x: 0, y: 1 }}
               style={appTheme.inputGradient}
@@ -66,7 +65,7 @@ export const RegisterScreen = () => {
 
         <View style={appTheme.inputContainer}>
             <LinearGradient
-              colors={['#ffffff', '#3b5998', ]}
+              colors={['#ffffff', '#ffc167']}
               start={{ x: 1, y: 1 }}
               end={{ x: 0, y: 1 }}
               style={appTheme.inputGradient}
@@ -92,7 +91,7 @@ export const RegisterScreen = () => {
 
         <View style={appTheme.inputContainer}>
           <LinearGradient
-            colors={['#ffffff', '#3b5998', ]}
+            colors={['#ffffff', '#ffc167']}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 1 }}
             style={appTheme.inputGradient}
@@ -107,8 +106,8 @@ export const RegisterScreen = () => {
             style={{
               ...appTheme.gradientInput
             }}
-            value={ state.pass }
-            onChangeText={ (text) => handleInputChange('pass', text) }
+            value={ state.password }
+            onChangeText={ (text) => handleInputChange('password', text) }
             placeholder="Contraseña"
             secureTextEntry={ true }
             placeholderTextColor="black"
@@ -118,7 +117,7 @@ export const RegisterScreen = () => {
 
         <View style={appTheme.inputContainer}>
           <LinearGradient
-            colors={['#ffffff', '#3b5998', ]}
+            colors={['#ffffff', '#ffc167']}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 1 }}
             style={appTheme.inputGradient}
@@ -144,13 +143,13 @@ export const RegisterScreen = () => {
 
         <SendButton
           title='REGISTRATE'
-          background='rgb(21, 63, 101)'
+          background='rgb(255,152,0)'
           onPress={ handleSignUp }
           disabled={ !loading }
         />
 
         <BtnNav
-          title='<'
+          iconName='arrow-circle-left'
           position='bottom_left'
           onPress={ () => navigation.navigate('LoginScreen') }
         />
