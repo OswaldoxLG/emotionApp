@@ -55,7 +55,7 @@ const Navigator = () => {
 
   // export const DrawerNavigator = () => {
   //   const { authState } = useContext( AuthContext );
-  //   return( authState.isLoggenIn) ? <Navigator/> : <LoginScreen/>
+  //     return( authState.isLoggedIn) ? <Navigator/> : <LoginScreen/>
   // }
 
   export const DrawerNavigator = () => (

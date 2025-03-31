@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { appTheme } from '../themes/appTheme';
 
 interface Props {
     iconName: keyof typeof FontAwesome.glyphMap;
@@ -11,6 +10,8 @@ interface Props {
 
 export const BtnNav = ( {iconName, position, onPress} : Props ) => {
 
+  const {width} = Dimensions.get('window');
+
   const btnPosition = (position == 'bottom_right') 
     ? style.BtnLocationBR
     : style.BtnLocationBL
@@ -18,7 +19,10 @@ export const BtnNav = ( {iconName, position, onPress} : Props ) => {
   return(
     <TouchableOpacity
     onPress={ onPress }
-    style = {btnPosition}
+    style = {{
+      ...btnPosition,
+      bottom: 10
+    }}
     activeOpacity={0.9}
     >
       <View

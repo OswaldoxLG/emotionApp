@@ -3,6 +3,8 @@ import { View, Text, TextInput, StyleSheet, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackAuthParams } from '../../navigator/AuthNavigator';
 import { useSignUp } from '../../hooks/useSignUp';
 import { SendButton } from '../../components/SendButton';
 import { BtnNav } from '../../components/BtnNav';
@@ -10,7 +12,7 @@ import { appTheme } from '../../themes/appTheme';
 
 export const RegisterScreen = () => {
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<StackNavigationProp<RootStackAuthParams>>();
 
   const {
     loading,
@@ -148,11 +150,11 @@ export const RegisterScreen = () => {
           disabled={ !loading }
         />
 
-        <BtnNav
+        {/* <BtnNav
           iconName='arrow-circle-left'
           position='bottom_left'
           onPress={ () => navigation.navigate('LoginScreen') }
-        />
+        /> */}
 
       </View>
     </ScrollView>

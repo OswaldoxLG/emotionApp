@@ -4,6 +4,8 @@ import { BtnNav } from "../../components/BtnNav";
 import { SendButton } from "../../components/SendButton";
 import { UserResponse } from "../../interfaces/userInterfaces";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackAdminParams } from "../../navigator/AdminNavigator";
 import { UserCard } from "../../components/UserCard";
 import { useUserApi } from "../../hooks/useUserApi";
 import { appTheme } from "../../themes/appTheme";
@@ -22,7 +24,7 @@ export const IndexUserScreen = () => {
     image:          ''
   }
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
 
   const isFocused = useIsFocused();
 
@@ -38,12 +40,11 @@ export const IndexUserScreen = () => {
         data={ Object.values( listUser )} //Convertir JSON a string
         keyExtractor={ (item) => '#'+item.id_user }
         ListHeaderComponent={(
-            <View>
+            <View style={{ marginBottom: 40, marginTop: 20}}>
               <Text
                 style={{
                   ...appTheme.title,
                   ...appTheme.globalMarging,
-                  marginTop: 20
                 }}
               >
                 Lista de usuarios
@@ -53,11 +54,11 @@ export const IndexUserScreen = () => {
                 background='rgb(41, 147, 39)'
                 onPress={() => { navigation.navigate('FormUserScreen', { user: createUser })}}
               />
-              <BtnNav
+              {/* <BtnNav
                 iconName="arrow-circle-left"
                 position="bottom_left"
                 onPress={() => { navigation.goBack() }}
-              />
+              /> */}
             </View>
         )}        
         refreshControl={
@@ -68,7 +69,7 @@ export const IndexUserScreen = () => {
             progressBackgroundColor={"black"}
           />
         }
-        numColumns={2}
+        numColumns={1}
         renderItem={ ( {item} ) => (
           <UserCard
             user={item}

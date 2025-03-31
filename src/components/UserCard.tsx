@@ -1,68 +1,107 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackAdminParams } from "../navigator/AdminNavigator";
 import { UserResponse } from "../interfaces/userInterfaces";
 
 interface Props {
-  user: UserResponse
+  user: UserResponse;
 }
 
-export const UserCard = ( { user }: Props ) => {
-  
+export const UserCard = ({ user }: Props) => {
   const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
-  const { width } = Dimensions.get('window');
+  const { width } = Dimensions.get("window");
 
   return (
     <TouchableOpacity
-      activeOpacity={ 0.9 }
-      onPress={ () => navigation.navigate('FormUserScreen', { user: user }) }
+      activeOpacity={0.9}
+      onPress={() => {
+        navigation.navigate("ShowUserScreen", { user: user });
+      }}
     >
       <View
         style={{
           ...styles.cardContainer,
-          backgroundColor: "green",
-          width: width * 0.40,
+          width: width * 0.9,
         }}
       >
-        <Text
-          style={ styles.title }
+        <Image
+          style={styles.img}
+          source={
+            user.image
+              ? { uri: `data:image/jpeg;base64,${user.image}` }
+              : require("../../assets/user.jpg")
+          }
+          resizeMode="cover"
+        />
+        <View style={styles.textContainer}>
+          <Text style={styles.text1}>
+            {`Nombre:\n ${user.name}` || "Nombre no disponible"}
+          </Text>
+          <Text style={styles.text2}>
+            {`Correo:\n ${user.email}` || "Correo no disponible"}
+          </Text>
+        </View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.editButton}
+          onPress={() => navigation.navigate("FormUserScreen", { user: user })}
         >
-          {`Usuario: \n ${user.username} \n`}
-          {`E-mail: \n ${user.email} \n`}
-        </Text>
-        <FontAwesome
-          style={ styles.icon }
-          name="users"
-          size={75}
-          color="white"
-        /> 
+          <FontAwesome name="edit" size={30} color="white" />
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  cardContainer:{
-      marginHorizontal: 10,
-      height: 120,
-      width: 120,
-      marginBottom: 25,
-      borderRadius: 20,
-      overflow: "hidden"
+  cardContainer: {
+    marginHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    height: 120,
+    marginBottom: 25,
+    borderRadius: 20,
+    backgroundColor: "rgb(255,152,0)",
+    overflow: "hidden",
+    elevation: 5,
   },
-  title:{
-      marginHorizontal: 15,
-      color: "white",
-      fontSize: 15,
-      fontWeight: "bold"
+  textContainer: {
+    flex: 1,
+    marginHorizontal: 15,
   },
-  icon:{
-      position: "absolute",
-      bottom: 20,
-      right: 15,
-      opacity: 0.5,
-  }
+  text1: {
+    color: "black",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  text2: {
+    color: "gray",
+    fontSize: 12,
+    fontWeight: "500",
+    marginTop: 5,
+  },
+  img: {
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+    marginLeft: 10,
+  },
+  editButton: {
+    backgroundColor: "#007BFF",
+    padding: 10,
+    borderRadius: 50,
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

@@ -16,6 +16,7 @@ export const appTheme = StyleSheet.create({
     fontFamily: "sans-serif",
     fontSize: 38, 
     fontWeight: "bold",
+    textAlign: 'center',
     marginBottom: 10,  
     marginHorizontal: 15,
     marginTop: 10

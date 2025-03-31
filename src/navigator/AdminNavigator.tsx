@@ -10,7 +10,7 @@ export type RootStackAdminParams = {
   DashboardScreen: undefined;
   IndexUserScreen: undefined;
   FormUserScreen: { user: UserResponse };
-  ShowUserScreen: undefined;
+  ShowUserScreen: { user: UserResponse };
 }
 export const AdminNavigator = () => {
     const Stack = createStackNavigator<RootStackAdminParams>();

@@ -20,18 +20,18 @@ export const authReducer = ( state: AuthState, action: AuthActions ) => {
         ...state,
         isLoggedIn: false,
         userName: undefined,
-        favoriteImage: undefined,
+        profileImage: undefined,
         role: undefined,
     };
     case "changeProfileImage": 
       return {
         ...state,
-        favoriteImage: action.payload,
+        profileImage: action.payload,
     };
     case "changeUserName": 
       return {
         ...state,
-        UserName: action.payload,
+        userName: action.payload,
     };
     case "changeRole":
       return {
