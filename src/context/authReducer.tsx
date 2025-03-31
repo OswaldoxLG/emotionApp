@@ -1,7 +1,7 @@
 import { AuthState } from "./AuthContext";
 
 type AuthActions = 
-    | { type: 'signIn' } 
+    | { type: 'signIn', payload: { userName: string, profileImage: string, role: string } } 
     | { type: 'logOut' } 
     | { type: 'changeProfileImage', payload: string }
     | { type: 'changeUserName', payload: string }
@@ -13,7 +13,9 @@ export const authReducer = ( state: AuthState, action: AuthActions ) => {
       return {
         ...state,
         isLoggedIn: true,
-        userName: "no_name_user_yet"
+        userName: action.payload.userName,
+        profileImage: action.payload.profileImage,
+        role: action.payload.role 
     }
     case "logOut":
       return {

@@ -31,11 +31,11 @@ const dataReducer = ( state: LoginData, action: Action ) => {
 
 export const useLogin = () => {
 
-  const [ loading, setLoading ] = useState<boolean>(true);
+  const [ loading, setLoading ] = useState<boolean>(false);
+  const [isEditable, setIsEditable] = useState<boolean>(true);
   const [ state, dispatch] = useReducer( dataReducer, initialLoginData);
   const [ request, setRequest] = useState<LoginResponse>();
   const { signIn, changeUserName, changeProfileImage, changeRole} = useContext( AuthContext );
-
 
   const handleInputChange = ( fieldName: keyof  LoginData, value: string) => {
     dispatch( { type: "handleInputChange", payload: { fieldName, value}})
@@ -43,33 +43,35 @@ export const useLogin = () => {
 
   const handleLogin = async () => {
     setLoading(true);
-    const apiUrl = 'http://192.168.1.4:3000/api/v1/usuario/login';
+    setIsEditable(false);
+    const apiUrl = 'http://192.168.1.4:3000/api/v1/user/login/';
 
     const dataBody = {
       email: state.email,
       password: state.password
     }
 
-    try{
+    try {
       const response = await emotionApi.post<LoginResponse>(apiUrl, dataBody);
-
-      ( response.data !== false) && ( () => {
-        signIn();
-        changeProfileImage( response.data.image);
-        changeUserName( response.data.username );
-        changeRole( response.data.rol );
-        setRequest( response.data );
-      })()
-    }catch(error){
-      console.log(error);
+  
+      if (response.data) {
+        // console.log('Datos del usuario:', response.data);
+        signIn(response.data.username, response.data.image, response.data.rol);
+        setRequest(response.data);
+      } else {
+        setRequest(false);
+      }
+    } catch (error) {
+      // console.error("Login error:", error);
       setRequest(false);
-    }
-    setLoading(false);
-  }
-
+    } 
+      setLoading(false);
+      setIsEditable(true);
+  };
 
   return { 
-    loading, 
+    loading,
+    isEditable,
     state, 
     handleLogin, 
     handleInputChange, 

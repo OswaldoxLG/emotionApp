@@ -20,7 +20,7 @@ export const AuthInitialState: AuthState = {
 //Exportacion de metodos y atributos
 export interface AuthContextProps{
   authState:      AuthState;
-  signIn:         () => void;
+  signIn:         ( userName: string, profileImage: string, role: string ) => void;
   logOut:         () => void;
   changeUserName: ( userName: string ) => void;
   changeProfileImage: ( sourceImage: string ) => void;
@@ -36,7 +36,12 @@ export const AuthProvider = ( { children }: { children: ReactNode} ) => {
   //reducer
   const [ authState, dispatch ] = useReducer( authReducer, AuthInitialState );
 
-  const signIn = () => dispatch( { type: "signIn" } ); 
+  const signIn = (userName: string, profileImage: string, role: string) => {
+    dispatch({ 
+      type: "signIn", 
+      payload: { userName, profileImage, role } 
+    });
+  };
 
   const logOut = () => dispatch( { type: "logOut" } );
 

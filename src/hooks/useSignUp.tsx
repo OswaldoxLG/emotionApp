@@ -53,7 +53,7 @@ export const useSignUp = () => {
       return;
     }
 
-    const apiUrl = 'http://192.168.1.4:3000/api/v1/usuario/signup';
+    const apiUrl = 'http://192.168.1.4:3000/api/v1/user/signUp/';
 
     const dataBody = {
       email: state.email,
@@ -65,10 +65,7 @@ export const useSignUp = () => {
       const response = await emotionApi.post<LoginResponse>(apiUrl, dataBody);
 
       ( response.data !== false) && ( () => {
-        signIn();
-        changeProfileImage( response.data.image);
-        changeUserName( response.data.username );
-        changeRole( response.data.rol );
+        signIn(response.data.username, response.data.image, response.data.rol);
         setRequest( response.data );
       })()
     }catch(error){

@@ -18,6 +18,7 @@ export const LoginScreen = () => {
 
   const {
     loading, 
+    isEditable,
     state, 
     handleLogin, 
     handleInputChange, 
@@ -83,7 +84,7 @@ export const LoginScreen = () => {
             placeholder="Correo Electronico"
             keyboardType='email-address'
             placeholderTextColor="black"
-            editable={ loading }
+            editable={ isEditable }
           />
         </View>
 
@@ -109,15 +110,15 @@ export const LoginScreen = () => {
             placeholder="Contraseña"
             secureTextEntry={ true }
             placeholderTextColor="black"
-            editable={ loading }
+            editable={ isEditable }
           />
         </View>
         
         <SendButton
-          title='INGRESAR'
+          title={ loading ? 'CARGANDO...' : 'INGRESAR' }
           background='rgb(255,152,0)'
           onPress={ handleLogin }
-          disabled={ !loading }
+          disabled={ loading }
         />
 
         <Text style={{ marginTop: 10, textAlign: 'center' }}>
