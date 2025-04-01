@@ -16,6 +16,7 @@ export const RegisterScreen = () => {
 
   const {
     loading,
+    isEditable,
     state,
     handleSignUp,
     handleInputChange,
@@ -61,7 +62,7 @@ export const RegisterScreen = () => {
               placeholder="Correo Electronico"
               keyboardType='email-address'
               placeholderTextColor="black"
-              editable={ loading }
+              editable={ isEditable }
             />
         </View>
 
@@ -87,7 +88,7 @@ export const RegisterScreen = () => {
               placeholder="Username"
               keyboardType='default'
               placeholderTextColor="black"
-              editable={ loading }
+              editable={ isEditable }
             />
         </View>
 
@@ -113,7 +114,7 @@ export const RegisterScreen = () => {
             placeholder="Contraseña"
             secureTextEntry={ true }
             placeholderTextColor="black"
-            editable={ loading }
+            editable={isEditable }
           />
         </View>
 
@@ -139,15 +140,15 @@ export const RegisterScreen = () => {
             placeholder="Repetir Contraseña"
             secureTextEntry={ true }
             placeholderTextColor="black"
-            editable={ loading }
+            editable={ isEditable }
           />
         </View>
 
         <SendButton
-          title='REGISTRATE'
+          title={ loading ? 'CARGANDO...' : 'REGISTRATE'}
           background='rgb(255,152,0)'
           onPress={ handleSignUp }
-          disabled={ !loading }
+          disabled={ loading }
         />
 
         {/* <BtnNav

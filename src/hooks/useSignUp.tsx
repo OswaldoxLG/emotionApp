@@ -35,7 +35,8 @@ const dataReducer = ( state: SignUpData, action: Action ) => {
 
 export const useSignUp = () => {
 
-  const [ loading, setLoading ] = useState<boolean>(true);
+  const [ loading, setLoading ] = useState<boolean>(false);
+  const [isEditable, setIsEditable] = useState<boolean>(true);
   const [ state, dispatch] = useReducer( dataReducer, initialSignUpData);
   const [ request, setRequest] = useState<LoginResponse>();
   const { signIn, changeUserName, changeProfileImage, changeRole} = useContext( AuthContext );
@@ -46,10 +47,12 @@ export const useSignUp = () => {
 
   const handleSignUp = async () => {
     setLoading(true);
+    setIsEditable(false);
 
     if (state.password !== state.repeatPass) {
       alert('Las contraseñas no coinciden');
       setLoading(false);
+      setIsEditable(true);
       return;
     }
 
@@ -73,10 +76,12 @@ export const useSignUp = () => {
       setRequest(false);
     }
     setLoading(false);
+    setIsEditable(true);
   }
 
   return { 
     loading, 
+    isEditable,
     state, 
     handleSignUp, 
     handleInputChange, 
