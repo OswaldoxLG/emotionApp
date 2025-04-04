@@ -22,12 +22,7 @@ export const HomeUserScreen = () => {
       ...styles.mainContainer,
     }}>
       <View style={styles.box1}>
-        <Text style={{
-          ...appTheme.title,
-          marginTop: 40,
-          marginBottom: 10,
-          fontStyle: 'italic'
-        }}
+        <Text style={styles.title}
       >
         {
           ( authState.isLoggedIn )
@@ -149,16 +144,26 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(	237, 244, 254)",
   },
   box1:{
-    flex: 2
+    flex: 2,
+    justifyContent: 'center',
+    marginHorizontal: 15,
   },
   box2:{
-    flex: 8,
+    flex: 7,
     flexDirection: 'column',
     flexWrap: 'wrap',
   },
   // box3:{
   //   flex: 0.5
   // },
+  title:{
+    color: "black",
+    fontFamily: "sans-serif",
+    fontSize: 32, 
+    fontWeight: "bold",
+    fontStyle: 'italic',
+    textAlign: 'center',
+  },
   square1:{
     height: "50%",
   },

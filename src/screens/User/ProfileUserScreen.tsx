@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { View, Image, StyleSheet, ActivityIndicator, RefreshControl, ScrollView } from "react-native";
+import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -51,23 +51,23 @@ export const ProfileUserScreen = () => {
             title="Editar mi perfil"
           />
         </View>
-            { isLoading ? (
-              <View
-              style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-              >
-                <ActivityIndicator
-                color="black"
-                size={60}
-                style={{ height: 100 }}
-                />
-              </View>
-            ) : (
-<ProfileUser 
-  user={userOne} 
-  onRefresh={loadUser} 
-  isRefreshing={isLoading} 
-/>
-            )}
+        {isLoading ? (
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <ActivityIndicator
+              color="black"
+              size={60}
+              style={{ height: 100 }}
+            />
+          </View>
+        ) : (
+          <ProfileUser
+            user={userOne}
+            onRefresh={loadUser}
+            isRefreshing={isLoading}
+          />
+        )}
       </View>
     </View>
   );
