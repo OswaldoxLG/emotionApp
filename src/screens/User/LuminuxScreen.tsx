@@ -7,8 +7,9 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
+  Image,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { InfoBox } from "../../components/InfoBox";
 
 const { width } = Dimensions.get("window");
 export const LuminuxUserScreen = () => {
@@ -19,12 +20,11 @@ export const LuminuxUserScreen = () => {
           source={require("../../../assets/fondo1.jpg")}
           style={styles.img}
         >
-          <View style={styles.overlay}>
+          <View style={styles.TxtFront}>
             <Text
               style={{
                 ...styles.mainTxt,
                 ...styles.textBase,
-                color: "white",
               }}
             >
               E-Motion: Tu calma, latido a latido.
@@ -43,16 +43,35 @@ export const LuminuxUserScreen = () => {
         <Text style={{ ...styles.outTitle, ...styles.textBase }}>
           Te ayudaremos a sentirte mejor.
         </Text>
-        <View style={styles.infoBox}>
-          <View style={styles.titlePart}>
-            <FontAwesome
-              name="heartbeat"
-              size={35}
-              color="black"
-              style={styles.icon}
+        <InfoBox
+          iconName="heartbeat"
+          title="Cuidate"
+          description="Monitorea tus emociones en tiempo real y recibe herramientas personalizadas para mantener tu equilibrio mental."
+        />
+        <InfoBox
+          iconName="sun-o"
+          title="Respira Tranquilo"
+          description="Cuando el estrés aparezca, nuestra pulsera te guiará con ejercicios de respiración para recuperar la calma al instante."
+        />
+        <InfoBox
+          iconName="bar-chart"
+          title="Conócete más"
+          description="Analiza tus patrones de estrés y ansiedad para atender qué los desencadena y cómo manejarlos de forma saludable."
+        />
+        <InfoBox
+          iconName="leaf"
+          title="Vive en equilibrio"
+          description="Combina tecnología y bienestar para enfrentar cada día con serenidad, energía y control emocional."
+        />
+        <View style={styles.box3}>
+          <View style={styles.titlePart3}>
+            <Image
+              style={styles.img2}
+              source={require("../../../assets/female-tourists.jpg")}
+              resizeMode="cover"
             />
             <Text style={{ ...styles.textBase, ...styles.titleTxt }}>
-              Cuidate
+              ¿Por qué debemos cuidar nuestra salud mental?
             </Text>
           </View>
           <Text
@@ -62,8 +81,10 @@ export const LuminuxUserScreen = () => {
               textAlign: "justify",
             }}
           >
-            Monitorea tus emociones en tiempo real y recibe herramientas
-            personalizadas para mantener tu equilibrio mental.
+            Una mente equilibrada nos permite enfrentar desafíos con
+            resiliencia, disfrutar de una vida plena y mantener una conexión
+            saludable con nosotros mismos y los demás. Invertir en salud mental
+            no es un lujo, es una necesidad.
           </Text>
         </View>
       </ScrollView>
@@ -75,14 +96,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
-  scrollView: {
-    ...StyleSheet.absoluteFillObject,
-  },
   img: {
     width: "100%",
     height: width * 0.9,
   },
-  overlay: {
+  TxtFront: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -94,7 +112,6 @@ const styles = StyleSheet.create({
   },
   textBase: {
     fontFamily: "sans-serif",
-    color: "black",
     textAlign: "center",
   },
   outTitle: {
@@ -102,27 +119,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 25,
     marginBottom: 25,
-  },
-  infoBox: {
-    flexDirection: "column",
-    borderRadius: 20,
-    borderColor: "rgb(192, 191, 191)",
-    borderWidth: 0.5,
-    backgroundColor: "white",
-    marginHorizontal: 30,
-    elevation: 20,
-    padding: 10,
-  },
-  icon: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  titlePart: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 10,
-    marginLeft: 30,
-    alignItems: "center",
   },
   mainTxt: {
     fontSize: 30,
@@ -136,16 +132,38 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     color: "white",
   },
+  img2: {
+    width: 250,
+    height: 250,
+    marginTop: 20,
+    borderRadius: 10,
+  },
+  box3: {
+    flexDirection: "column",
+    borderRadius: 20,
+    borderColor: "rgb(192, 191, 191)",
+    borderWidth: 0.5,
+    backgroundColor: "white",
+    marginHorizontal: 30,
+    marginBottom: 25,
+    elevation: 15,
+    padding: 10,
+  },
+  titlePart3: {
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 5,
+  },
+  subTxt: {
+    color: "gray",
+    fontSize: 16,
+    marginTop: 10,
+    paddingHorizontal: 20,
+  },
   titleTxt: {
     fontSize: 20,
     fontWeight: "bold",
     marginTop: 10,
     marginBottom: 10,
-  },
-  subTxt: {
-    fontSize: 16,
-    textAlign: "justify",
-    marginTop: 10,
-    paddingHorizontal: 20,
   },
 });
