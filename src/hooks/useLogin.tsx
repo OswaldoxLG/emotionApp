@@ -49,7 +49,7 @@ export const useLogin = () => {
   const handleLogin = async () => {
     setLoading(true);
     setIsEditable(false);
-    const apiUrl = 'http://192.168.1.5:3000/api/v1/user/login/';
+    const apiUrl = 'http://192.168.1.3:3000/api/v1/user/login/';
 
     const dataBody = {
       email: state.email,

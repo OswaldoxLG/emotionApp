@@ -5,11 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
-import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackUserParams } from "../../navigator/UserNavigator";
-import { useOneUser } from "../../hooks/useOneUser";
-import { UserResponse } from "../../interfaces/userInterfaces";
-import { appTheme } from "../../themes/appTheme";
 
 export const HomeUserScreen = () => {
 
@@ -126,7 +122,7 @@ export const HomeUserScreen = () => {
               source={require('../../../assets/logo2.png')} 
               style={styles.image}
             />
-            <Text style={styles.textLu}>Luminux</Text>
+            <Text style={styles.textLu}>E-Motion</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>

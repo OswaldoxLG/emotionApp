@@ -11,7 +11,7 @@ export const useOneUser = ({ id_user }: OneUser) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userOne, setUserOne] = useState<UserResponse | null>(null);
 
-  const apiUrl: string = `http://192.168.1.5:3000/api/v1/user/`;
+  const apiUrl: string = `http://192.168.1.3:3000/api/v1/user/`;
 
   const loadUser = async () => {
     try {
