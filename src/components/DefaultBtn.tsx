@@ -25,7 +25,7 @@ export const DefaultBtn = ({ onPress, title, iconName, value  }: Props) => {
         style={appTheme.inputGradient}
       />
         <FontAwesome
-          style={ appTheme.icon }
+          style={ style.icon }
           name={ iconName }
           size={20}
           color='white'
@@ -47,23 +47,30 @@ export const DefaultBtn = ({ onPress, title, iconName, value  }: Props) => {
 
 const style = StyleSheet.create({
   mainContainer:{
-    margin: 10,
+    marginTop: 20,
+    marginBottom: 20,
     borderRadius: 10,
     overflow: 'hidden',
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    
   },
   btnContainer: {
-    margin: 10,
+    marginHorizontal: 30,
     padding: 5,
-    width: 120,
-    height: 35,
+    width: 'auto',
+    height: 45,
     justifyContent: 'center',
   },
   btnTitle: {
     color: 'black',
     fontSize: 14,
     fontWeight: '600',
-    textAlign: 'center'
+  },
+  icon:{
+    position: "absolute",
+    bottom: 12,
+    left: 12,
+    opacity: 1,
   }
 })

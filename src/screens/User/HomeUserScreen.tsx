@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { AuthContext } from "../../context/AuthContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackUserParams } from "../../navigator/UserNavigator";
+import { useOneUser } from "../../hooks/useOneUser";
+import { UserResponse } from "../../interfaces/userInterfaces";
 import { appTheme } from "../../themes/appTheme";
+
 export const HomeUserScreen = () => {
-  
+
   const  {width } = useWindowDimensions();
-
+  const navigation = useNavigation<StackNavigationProp<RootStackUserParams>>();
   const { authState } = useContext(AuthContext);
-
+  
   return (
     <View style={{
       ...styles.mainContainer,
@@ -19,12 +26,13 @@ export const HomeUserScreen = () => {
           ...appTheme.title,
           marginTop: 40,
           marginBottom: 10,
+          fontStyle: 'italic'
         }}
       >
         {
           ( authState.isLoggedIn )
-          ? `Bienvenido a E-Motion, ${authState.userName}`
-          : "Bienvenido a E-Motion"
+          ? `Bienvenido a E-Motion, ${authState.userName}.`
+          : "Bienvenido a E-Motion."
         }
       </Text>
       </View>
@@ -37,7 +45,12 @@ export const HomeUserScreen = () => {
           width: width * 0.5,
         }}
         >
-          <TouchableOpacity style={styles.gradient}>
+          <TouchableOpacity 
+            style={styles.gradient}
+            onPress={ () => {
+              navigation.navigate('InfoUserScreen')
+            }}
+          >
           <FontAwesome
               style={ styles.icon }
               name='bar-chart-o'
@@ -46,7 +59,7 @@ export const HomeUserScreen = () => {
             />
             <Text style={{
               ...styles.text,
-              marginTop: 85
+              marginTop: 100
             }}>Sobre Mí</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -58,7 +71,12 @@ export const HomeUserScreen = () => {
           width: width * 0.5,
         }}
         >
-          <TouchableOpacity style={styles.gradient}>
+          <TouchableOpacity 
+            style={styles.gradient}
+            onPress={ () => {
+              navigation.navigate('RecursosUserScreen')
+            }}
+          >
           <FontAwesome
               style={ styles.icon }
               name='heart-o'
@@ -67,7 +85,7 @@ export const HomeUserScreen = () => {
             />
             <Text style={{
               ...styles.text,
-              marginTop: 85
+              marginTop: 100
             }}>Relájate</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -79,7 +97,10 @@ export const HomeUserScreen = () => {
           width: width * 0.5,
         }}
         >
-          <TouchableOpacity style={styles.gradient}>
+          <TouchableOpacity 
+            style={styles.gradient}
+            onPress={ () => { navigation.navigate('ProfileUserScreen') }}
+          >
             <FontAwesome
               style={ styles.icon }
               name='user-circle'
@@ -88,7 +109,7 @@ export const HomeUserScreen = () => {
             />
             <Text style={{
               ...styles.text,
-              marginTop: 85
+              marginTop: 100
             }}>Mi perfil</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -100,7 +121,12 @@ export const HomeUserScreen = () => {
           width: width * 0.5,
         }}
         >
-          <TouchableOpacity style={styles.gradient}>
+          <TouchableOpacity 
+            style={styles.gradient}
+            onPress={ () => {
+              navigation.navigate('LuminuxUserScreen')
+            }}
+          >
             <Image
               source={require('../../../assets/logo2.png')} 
               style={styles.image}
@@ -123,10 +149,10 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(	237, 244, 254)",
   },
   box1:{
-    flex: 1.5
+    flex: 2
   },
   box2:{
-    flex: 8.5,
+    flex: 8,
     flexDirection: 'column',
     flexWrap: 'wrap',
   },

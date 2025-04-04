@@ -7,6 +7,7 @@ export interface AuthState {
   userName:       string | undefined;
   profileImage:   string | undefined;
   role:           string | undefined;
+  id_user:        number | string | undefined;
 }
 
 //Definición del estado inicial
@@ -15,16 +16,16 @@ export const AuthInitialState: AuthState = {
   userName:       undefined,
   profileImage:   undefined,
   role:           undefined,
+  id_user:        undefined,
 }
 
 //Exportacion de metodos y atributos
 export interface AuthContextProps{
   authState:      AuthState;
-  signIn:         ( userName: string, profileImage: string, role: string ) => void;
+  signIn:         ( userName: string, profileImage: string, role: string, id_user: number|string) => void;
   logOut:         () => void;
   changeUserName: ( userName: string ) => void;
   changeProfileImage: ( sourceImage: string ) => void;
-  changeRole: ( role: string ) => void;
 }
 
 //Creación de context
@@ -36,10 +37,10 @@ export const AuthProvider = ( { children }: { children: ReactNode} ) => {
   //reducer
   const [ authState, dispatch ] = useReducer( authReducer, AuthInitialState );
 
-  const signIn = (userName: string, profileImage: string, role: string) => {
+  const signIn = (userName: string, profileImage: string, role: string, id_user: number|string) => {
     dispatch({ 
       type: "signIn", 
-      payload: { userName, profileImage, role } 
+      payload: { userName, profileImage, role, id_user } 
     });
   };
 
@@ -53,10 +54,6 @@ export const AuthProvider = ( { children }: { children: ReactNode} ) => {
     dispatch( { type: "changeUserName", payload: userName } );
   }
 
-  const changeRole = ( role: string ) => {
-    dispatch( { type: "changeRole", payload: role } );
-  }
-
   return (
     <AuthContext.Provider
       value={{
@@ -65,7 +62,6 @@ export const AuthProvider = ( { children }: { children: ReactNode} ) => {
         logOut,
         changeProfileImage,
         changeUserName,
-        changeRole
       }}
     >
       { children }

@@ -39,7 +39,7 @@ export const useSignUp = () => {
   const [isEditable, setIsEditable] = useState<boolean>(true);
   const [ state, dispatch] = useReducer( dataReducer, initialSignUpData);
   const [ request, setRequest] = useState<LoginResponse>();
-  const { signIn, changeUserName, changeProfileImage, changeRole} = useContext( AuthContext );
+  const { signIn, changeUserName, changeProfileImage} = useContext( AuthContext );
 
   const handleInputChange = ( fieldName: keyof  SignUpData, value: string) => {
     dispatch( { type: "handleInputChange", payload: { fieldName, value}})
@@ -56,7 +56,7 @@ export const useSignUp = () => {
       return;
     }
 
-    const apiUrl = 'http://192.168.1.4:3000/api/v1/user/signUp/';
+    const apiUrl = 'http://192.168.1.3:3000/api/v1/user/signUp/';
 
     const dataBody = {
       email: state.email,
@@ -68,7 +68,7 @@ export const useSignUp = () => {
       const response = await emotionApi.post<LoginResponse>(apiUrl, dataBody);
 
       ( response.data !== false) && ( () => {
-        signIn(response.data.username, response.data.image, response.data.rol);
+        signIn(response.data.username, response.data.image, response.data.rol, response.data.id_user);
         setRequest( response.data );
       })()
     }catch(error){

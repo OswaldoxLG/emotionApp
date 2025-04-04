@@ -45,10 +45,12 @@ export const UserCard = ({ user }: Props) => {
         />
         <View style={styles.textContainer}>
           <Text style={styles.text1}>
-            {`Nombre:\n ${user.name}` || "Nombre no disponible"}
+            {user?.username
+              ? `Username:\n ${user.username}`
+              : "Nombre no disponible"}
           </Text>
           <Text style={styles.text2}>
-            {`Correo:\n ${user.email}` || "Correo no disponible"}
+            {user?.email ? `Correo:\n ${user.email}` : "Correo no disponible"}
           </Text>
         </View>
         <TouchableOpacity

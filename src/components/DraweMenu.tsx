@@ -7,6 +7,8 @@ import {
 } from "@react-navigation/drawer";
 import { appTheme } from "../themes/appTheme";
 import { DefaultBtn } from "./DefaultBtn";
+import { FontAwesome } from "@expo/vector-icons";
+
 export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
   const { authState, logOut } = useContext(AuthContext);
   const assets: string = "./../../assets/";
@@ -22,19 +24,26 @@ export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
               : require(assets + "user.jpg")
           }
         />
-        <Text style={{ ...appTheme.title, marginTop: 10 }}>
-          {`Hola, ${authState.userName || "Usuario"}`}
+        <Text style={{ ...appTheme.nametxt, marginTop: 10 }}>
+          {`${authState.userName || "Usuario"}`}
         </Text>
       </View>
 
       <View style={appTheme.menuContainer}>
         {/* Navegación de usuario */}
-        {authState.role === "user" && (
+        {authState.role === "usuario" && (
           <TouchableOpacity
             style={appTheme.menuBtn}
+            activeOpacity={0.9}
             onPress={() => navigation.navigate("UserNavigator")}
           >
-            <Text style={appTheme.texBtn}>Panel de Usuario</Text>
+            <FontAwesome
+              style={appTheme.iconDrawer}
+              name={"home"}
+              size={25}
+              color="gray"
+            />
+            <Text style={appTheme.texBtn}>Home</Text>
           </TouchableOpacity>
         )}
         {/* Navegación de administrador */}
@@ -43,8 +52,15 @@ export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
             <TouchableOpacity
               style={appTheme.menuBtn}
               onPress={() => navigation.navigate("AdminNavigator")}
+              activeOpacity={0.9}
             >
-              <Text style={appTheme.texBtn}>Panel de Administración</Text>
+              <FontAwesome
+                style={appTheme.iconDrawer}
+                name={"home"}
+                size={25}
+                color="gray"
+              />
+              <Text style={appTheme.texBtn}>Dashboard</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity

@@ -30,6 +30,16 @@ export const appTheme = StyleSheet.create({
     marginBottom: 30,  
     marginHorizontal: 15,
   },
+  nametxt:{
+    color: "black",
+    fontFamily: "sans-serif",
+    fontSize: 20, 
+    fontWeight: "700",
+    fontStyle: 'italic',
+    textAlign: "center",
+    marginBottom: 15,  
+    marginHorizontal: 15,
+  },
   inputContainer: {
     position: 'relative',
     height: 60,
@@ -64,6 +74,12 @@ export const appTheme = StyleSheet.create({
     left: 20,
     opacity: 1,
   },
+  iconDrawer:{
+    position: "absolute",
+    bottom: 10,
+    left: 0,
+    opacity: 1,
+  },
   avatar:{
     height: 200,
     width: 200,
@@ -76,13 +92,16 @@ export const appTheme = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
   },
-  menuBtn:{
-    marginVertical: 10,
+  menuBtn:{ 
+    width: '100%',
   },
   texBtn:{
-    fontSize: 19,
+    fontSize: 18,
     fontFamily: 'sans-serif',
     color:"black",
-    fontWeight: "400"
+    fontWeight: "400",
+    marginTop: 10,
+    marginLeft: 35,
+    marginBottom: 10
   }
 });

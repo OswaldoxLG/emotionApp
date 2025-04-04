@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext} from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { AuthContext } from "../../context/AuthContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { CrudCard } from "../../components/CrudCard";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackAdminParams } from "../../navigator/AdminNavigator";
 import { appTheme } from "../../themes/appTheme";
+
 export const DashboardScreen = () => {
 
 const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
-
+  const { authState } = useContext(AuthContext);
   return (
 
       <View style={{ flex: 1 }}>
@@ -20,7 +22,7 @@ const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
           style={styles.box1}
         >
           <Text style={appTheme.title}>
-            Hola, 
+            {`Bienvenido, ${authState.userName}`} 
           </Text>
         </LinearGradient>
         

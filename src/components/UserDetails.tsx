@@ -4,7 +4,7 @@ import { UserResponse } from "../interfaces/userInterfaces";
 import { appTheme } from "../themes/appTheme";
 
 interface Props{
-  user: UserResponse;
+  user: UserResponse | null;
 }
 
 export const UserDetail = ( {user}: Props ) => {
@@ -20,7 +20,7 @@ export const UserDetail = ( {user}: Props ) => {
         <Image
         style={appTheme.avatar}
         source={
-          user.image
+          user?.image
             ? { uri: `data:image/jpeg;base64,${user.image}` }
             : require("../../assets/user.jpg")
         }
@@ -29,31 +29,31 @@ export const UserDetail = ( {user}: Props ) => {
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Nombre:</Text>
-          <Text style={styles.txtData}>{user.name || "Nombre no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.name || "Nombre no disponible"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Username:</Text>
-          <Text style={styles.txtData}>{user.username || "Username no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.username || "Username no disponible"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Apellidos:</Text>
-          <Text style={styles.txtData}>{user.lastname || "Apellidos no disponibles"}</Text>
+          <Text style={styles.txtData}>{user?.lastname || "Apellidos no disponibles"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Correo:</Text>
-          <Text style={styles.txtData}>{user.email || "Correo no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.email || "Correo no disponible"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Teléfono:</Text>
-          <Text style={styles.txtData}>{user.phone || "Teléfono no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.phone || "Teléfono no disponible"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Sexo:</Text>
-          <Text style={styles.txtData}>{user.sex || "Sexo no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.sex || "Sexo no disponible"}</Text>
         </View>
         <View style={styles.boxText}>
           <Text style={styles.subtitle}>Rol:</Text>
-          <Text style={styles.txtData}>{user.rol || "Rol no disponible"}</Text>
+          <Text style={styles.txtData}>{user?.rol || "Rol no disponible"}</Text>
         </View>
       </View>
     </ScrollView>

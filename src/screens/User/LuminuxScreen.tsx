@@ -5,7 +5,9 @@ export const LuminuxUserScreen = () => {
 
   return(
     <View>
-      
+      <Text>
+        Acerca de nosotros
+      </Text>
     </View>
   );
 }

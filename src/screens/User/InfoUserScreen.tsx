@@ -5,7 +5,9 @@ export const InfoUserScreen = () => {
 
   return(
     <View>
-      
+      <Text>
+        Mis estadísticas
+      </Text>
     </View>
   );
 }

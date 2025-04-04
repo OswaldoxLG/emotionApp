@@ -3,7 +3,6 @@ import {
   View,
   Text,
   ActivityIndicator,
-  ScrollView,
   StyleSheet,
 } from "react-native";
 import { UserDetail } from "../../components/UserDetails";
@@ -19,7 +18,9 @@ interface Props
 export const ShowUserScreen = ({ route }: Props) => {
   const { user } = route.params;
   const { id_user } = user;
-  const { userOne, isLoading } = useOneUser(id_user);
+  const { userOne, isLoading } = useOneUser({ id_user });
+  
+  const displayUser = isLoading ? user : userOne;
 
   // useEffect(() => {
   //   console.log("UserOne completo:", JSON.stringify(userOne, null, 2));
@@ -54,7 +55,7 @@ export const ShowUserScreen = ({ route }: Props) => {
             />
           </View>
         ) : (
-          <UserDetail user={userOne} />
+          <UserDetail user={displayUser} />
         )}
       </View>
     </View>

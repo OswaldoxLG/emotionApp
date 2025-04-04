@@ -1,11 +1,10 @@
 import { AuthState } from "./AuthContext";
 
 type AuthActions = 
-    | { type: 'signIn', payload: { userName: string, profileImage: string, role: string } } 
+    | { type: 'signIn', payload: { userName: string, profileImage: string, role: string, id_user: string|number } } 
     | { type: 'logOut' } 
     | { type: 'changeProfileImage', payload: string }
     | { type: 'changeUserName', payload: string }
-    | { type: 'changeRole', payload: string }
 export const authReducer = ( state: AuthState, action: AuthActions ) => {
 
   switch( action.type ){
@@ -15,7 +14,8 @@ export const authReducer = ( state: AuthState, action: AuthActions ) => {
         isLoggedIn: true,
         userName: action.payload.userName,
         profileImage: action.payload.profileImage,
-        role: action.payload.role 
+        role: action.payload.role,
+        id_user: action.payload.id_user
     }
     case "logOut":
       return {
@@ -24,6 +24,7 @@ export const authReducer = ( state: AuthState, action: AuthActions ) => {
         userName: undefined,
         profileImage: undefined,
         role: undefined,
+        id_user: undefined,
     };
     case "changeProfileImage": 
       return {
@@ -35,11 +36,6 @@ export const authReducer = ( state: AuthState, action: AuthActions ) => {
         ...state,
         userName: action.payload,
     };
-    case "changeRole":
-      return {
-        ...state,
-        role: action.payload,
-      };
     default:
       return { ...state };
   }  
