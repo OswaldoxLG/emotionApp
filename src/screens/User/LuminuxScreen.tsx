@@ -14,7 +14,7 @@ import { InfoBox } from "../../components/InfoBox";
 const { width } = Dimensions.get("window");
 export const LuminuxUserScreen = () => {
   return (
-    <SafeAreaView style={styles.mainContainer}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ ...StyleSheet.absoluteFillObject }}>
         <ImageBackground
           source={require("../../../assets/fondo1.jpg")}
@@ -93,9 +93,6 @@ export const LuminuxUserScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-  },
   img: {
     width: "100%",
     height: width * 0.9,

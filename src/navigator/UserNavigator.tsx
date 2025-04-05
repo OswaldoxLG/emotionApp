@@ -7,12 +7,14 @@ import { LuminuxUserScreen } from "../screens/User/LuminuxScreen";
 import { RecursosUserScreen } from "../screens/User/RecursosUserScreen";
 import { UserResponse } from "../interfaces/userInterfaces";
 import { EditUserScreen } from "../screens/User/EditUserScreen";
+import { RelaxScreen } from "../screens/User/RelaxScreen";
 
 export type RootStackUserParams = {
   HomeUserScreen: { user: UserResponse};
   InfoUserScreen: undefined;
   LuminuxUserScreen: undefined;
   RecursosUserScreen: undefined;
+  RelaxScreen: undefined;
   ProfileUserScreen: undefined;
   EditUserScreen: { user: UserResponse};
 }
@@ -66,6 +68,10 @@ export const UserNavigator = () => {
       <Stack.Screen
         name="EditUserScreen"
         component={EditUserScreen}
+      />
+      <Stack.Screen
+        name="RelaxScreen"
+        component={RelaxScreen}
       />
     </Stack.Navigator>
   );

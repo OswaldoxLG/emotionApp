@@ -1,73 +1,59 @@
-import React, { useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { appTheme } from '../themes/appTheme';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { appTheme } from "../themes/appTheme";
 
-interface BtnForm{
+interface BtnForm {
   title: string;
   state: string;
   action: () => void;
 }
 
-export const BtnOption = ( { title, state, action }: BtnForm ) => {
+export const BtnOption = ({ title, state, action }: BtnForm) => {
+  const isSelected =
+    (title === "Femenino" && state === "F") ||
+    (title === "Masculino" && state === "M") ||
+    (title === "Administrador" && state === "admin") ||
+    (title === "Usuario" && state === "usuario");
 
-  const [isSelected, setIsSelected ] = useState<boolean>(false);
-
-  const handlePress = () => {
-    setIsSelected(!isSelected)
-    action();
-  }
-
-  const gradientColors : any = isSelected
-  ? ['#ffffff', '#007BFF'] 
-  : ['#ffffff', '#ffc167']; 
-
+  const gradientColors: any = isSelected
+    ? ["#ffffff", "#007BFF"]
+    : ["#ffffff", "#ffc167"];
 
   return (
-      <TouchableOpacity
-      onPress={ handlePress }
-      style={style.mainContainer}
-      >
+    <TouchableOpacity onPress={action} style={style.mainContainer}>
       <LinearGradient
         colors={gradientColors}
         start={{ x: 1, y: 1 }}
         end={{ x: 0, y: 1 }}
         style={appTheme.inputGradient}
       />
-        <View
-          style={{
-            ...style.btnContainer
-          }}
-        >
-          <Text
-            style={ style.btnTitle }
-          >
-            { title }
-          </Text>
-        </View>
-      </TouchableOpacity>
+      <View style={style.btnContainer}>
+        <Text style={style.btnTitle}>{title}</Text>
+      </View>
+    </TouchableOpacity>
   );
-}
+};
 
 const style = StyleSheet.create({
-  mainContainer:{
+  mainContainer: {
     margin: 10,
     borderRadius: 10,
-    overflow: 'hidden',
-    borderColor: 'black',
-    borderWidth: 1
+    overflow: "hidden",
+    borderColor: "black",
+    borderWidth: 1,
   },
   btnContainer: {
     margin: 10,
     padding: 5,
     width: 120,
     height: 35,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   btnTitle: {
-    color: 'black',
+    color: "black",
     fontSize: 14,
-    fontWeight: '600',
-    textAlign: 'center'
-  }
-})
+    fontWeight: "600",
+    textAlign: "center",
+  },
+});
