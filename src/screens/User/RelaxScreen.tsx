@@ -5,11 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { RootStackUserParams } from "../../navigator/UserNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BtnRelax } from "../../components/BtnRelax";
-import YoutubePlayer from "react-native-youtube-iframe";
+import { VideoCard } from "../../components/VideoCard";
 
-interface RelaxScreenProps {}
-
-export const RelaxScreen = (props: RelaxScreenProps) => {
+export const RelaxScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackUserParams>>();
 
   return (
@@ -26,7 +24,7 @@ export const RelaxScreen = (props: RelaxScreenProps) => {
         <View style={styles.btnBox}>
           <BtnRelax
             title="Meditación"
-            onPress={() => navigation.navigate("RecursosUserScreen")}
+            onPress={() => navigation.replace("RecursosUserScreen")}
             isSelected={false}
           />
           <BtnRelax
@@ -35,23 +33,67 @@ export const RelaxScreen = (props: RelaxScreenProps) => {
             isSelected={true}
           />
         </View>
-        <View style={styles.videoContainer}>
-          <View style={styles.video}>
-          <YoutubePlayer
-            height={300}
-            width={300}
-            play={false}
-            videoId="jS3tdO1MdkE"
-          />
-          <Text style={styles.titleBox}>Despeja tu mente</Text>
-          </View>
-          <View style={styles.line}></View>
-        </View>
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="jS3tdO1MdkE"
+          text="Inhala tranquilidad, exhala estrés."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="G0HypiXhdgc"
+          text="Tu respiración es tu ancla en momentos difíciles."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="LZJoRGuqb7o"
+          text="Respirar conscientemente es regresar al presente."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="_d5YIjqubmE"
+          text="Cada respiración es una oportunidad para empezar de nuevo."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="fxZKlHH5bqI"
+          text="El control de tu respiración es el control de tu mente."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="whAzwqn4ITE"
+          text="Respira lento, vive despacio, siente profundo."
+        />
+        <View style={styles.line} />
+        <VideoCard
+          width={300}
+          height={190}
+          play={false}
+          videoId="hbzfDIYLJoA"
+          text="Tu respiración es tu superpoder para encontrar la calma."
+        />
+        <View style={styles.line} />
       </ScrollView>
     </SafeAreaView>
   );
 };
-
+"jS3tdO1MdkE"
 const styles = StyleSheet.create({
   btnBox: {
     flexDirection: "row",
@@ -60,27 +102,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
-  videoContainer: {
-    padding: 20,
-    marginTop: 20,
-    alignItems: "center",
-    borderRadius: 20,
-    height: 400,
-    overflow: "hidden",
-    elevation: 5,
-    backgroundColor: "#fff",
+  line: {
+    backgroundColor: "rgb(192, 191, 191)",
+    borderStyle: "solid",
+    borderWidth: 0.5,
     margin: 10,
+    height: 1,
+    width: "75%",
+    alignSelf: "center",
   },
-  video:{
-
-  },
-  titleBox: {
-    fontFamily: "sans-serif",
-    fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  line:{
-    backgroundColor: 'black'
-  }
 });
