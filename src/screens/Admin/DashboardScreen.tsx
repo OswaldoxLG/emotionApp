@@ -35,12 +35,16 @@ const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
               title="USUARIOS"
               icon='users'
             />
-              <CrudCard
-              onPress={() => navigation.navigate('IndexUserScreen')}
+            <CrudCard
+              onPress={() => navigation.navigate('GraficosScreen')}
               title="GRÁFICOS"
               icon='bar-chart-o'
             />
-            
+            <CrudCard
+              onPress={() => navigation.navigate('EstresScreen')}
+              title="ESTRÉS"
+              icon="refresh"
+            />
           </ScrollView>
         </View>
       </View>

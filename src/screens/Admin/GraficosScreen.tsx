@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, ScrollView, SafeAreaView, Dimensions, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import {
   LineChart,
   ProgressChart,
@@ -8,38 +15,31 @@ import {
 } from "react-native-chart-kit";
 import { appTheme } from "../../themes/appTheme";
 
-export const InfoUserScreen = () => {
-    const charConfig = {
-      backgroundColor: "white", // Fondo
-      backgroundGradientFrom: "#1E90FF", // Inicio"#1E90FF"
-      backgroundGradientTo: "#ffa61e", // Fin
-      decimalPlaces: 0, // Número de decimales
-      color: (opacity = 1) => `rgba(255,255,255,${opacity})`,
-      labelColor: (opacity = 1) => `rgba(0,0,0,${opacity})`,
-      style: {
-        borderRadius: 20,
-      },
-      propsForDots: {
-        r: "5",
-        strokeWidth: "2",
-        stroke: "#1E90FF",
-      },
-    };
-  
-    const height = Dimensions.get("window").height;
-    const width = Dimensions.get("window").width;
+export const GraficosScreen = () => {
+  const charConfig = {
+    backgroundColor: "white", // Fondo
+    backgroundGradientFrom: "#1E90FF", // Inicio"#1E90FF"
+    backgroundGradientTo: "#ffa61e", // Fin
+    decimalPlaces: 0, // Número de decimales
+    color: (opacity = 1) => `rgba(255,255,255,${opacity})`,
+    labelColor: (opacity = 1) => `rgba(0,0,0,${opacity})`,
+    style: {
+      borderRadius: 20,
+    },
+    propsForDots: {
+      r: "5",
+      strokeWidth: "2",
+      stroke: "#1E90FF",
+    },
+  };
 
-  return(
-    <SafeAreaView
-      style={{
-        ...styles.container
-      }}
-    >
+  const height = Dimensions.get("window").height;
+  const width = Dimensions.get("window").width;
+  return (
+    <SafeAreaView style={styles.container}>
       <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1
-        }}
-        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
       >
         <Text style={appTheme.nametxt}>
           Últimos registros de la frecuencia cardiaca
@@ -92,14 +92,13 @@ export const InfoUserScreen = () => {
       </ScrollView>
     </SafeAreaView>
   );
-}
-
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 30,
+    marginTop: 40,
     marginHorizontal: 15,
   },
   graph: {

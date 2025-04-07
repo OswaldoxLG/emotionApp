@@ -5,10 +5,14 @@ import { IndexUserScreen } from "../screens/Admin/IndexUserScreen";
 import { FormUserScreen } from "../screens/Admin/FormUserScreen";
 import { ShowUserScreen } from "../screens/Admin/ShowUserScreen";
 import { UserResponse } from "../interfaces/userInterfaces";
+import { GraficosScreen } from "../screens/Admin/GraficosScreen";
+import { EstresScreen } from "../screens/Admin/EstresScreen";
 
 export type RootStackAdminParams = {
   DashboardScreen: undefined;
   IndexUserScreen: undefined;
+  GraficosScreen: undefined;
+  EstresScreen: undefined;
   FormUserScreen: { user: UserResponse };
   ShowUserScreen: { user: UserResponse };
 }
@@ -57,6 +61,16 @@ export const AdminNavigator = () => {
       <Stack.Screen
         name="ShowUserScreen"
         component={ShowUserScreen}
+      />
+
+      <Stack.Screen
+        name="GraficosScreen"
+        component={GraficosScreen}
+      />
+
+      <Stack.Screen
+        name="EstresScreen"
+        component={EstresScreen}
       />
 
     </Stack.Navigator>

@@ -1,7 +1,6 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, Text, TextInput, StyleSheet, StatusBar, Image, Dimensions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, StatusBar, Image, Dimensions, SafeAreaView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SendButton } from '../../components/SendButton';
 import { useNavigation } from '@react-navigation/native';

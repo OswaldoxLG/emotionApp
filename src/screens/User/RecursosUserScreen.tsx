@@ -1,6 +1,5 @@
 import React from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackUserParams } from "../../navigator/UserNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
