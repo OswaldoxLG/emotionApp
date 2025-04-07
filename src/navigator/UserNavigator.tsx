@@ -8,8 +8,10 @@ import { RecursosUserScreen } from "../screens/User/RecursosUserScreen";
 import { UserResponse } from "../interfaces/userInterfaces";
 import { EditUserScreen } from "../screens/User/EditUserScreen";
 import { RelaxScreen } from "../screens/User/RelaxScreen";
+import { BottomTabNavigator } from "./BottomTabNavigator";
 
 export type RootStackUserParams = {
+  BottomTabNavigator: undefined;
   HomeUserScreen: { user: UserResponse};
   InfoUserScreen: undefined;
   LuminuxUserScreen: undefined;
@@ -22,7 +24,7 @@ export const UserNavigator = () => {
     const Stack = createStackNavigator<RootStackUserParams>();
   return(
     <Stack.Navigator
-    initialRouteName='HomeUserScreen'
+    initialRouteName='BottomTabNavigator'
     screenOptions={{
       headerMode: 'float',
       headerShown: false,
@@ -45,6 +47,10 @@ export const UserNavigator = () => {
       }
     }}    
     >
+      <Stack.Screen
+        name="BottomTabNavigator"
+        component={BottomTabNavigator}
+      />
       <Stack.Screen
         name="HomeUserScreen"
         component={HomeUserScreen}

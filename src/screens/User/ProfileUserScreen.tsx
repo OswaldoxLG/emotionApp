@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   box1: {
-    flex: 5,
-    justifyContent: "center",
+    flex: 4.9,
+    justifyContent:"flex-end",
     alignItems: "center",
   },
   info: {
-    flex: 5,
+    flex: 5.1,
     justifyContent: "center",
     alignItems: "center",
   },

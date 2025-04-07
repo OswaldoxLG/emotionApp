@@ -13,6 +13,7 @@ export const RecursosUserScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: 20
       }}
     >
       <ScrollView
@@ -28,7 +29,7 @@ export const RecursosUserScreen = () => {
           />
           <BtnRelax
             title="Respiración"
-            onPress={() => navigation.replace("RelaxScreen")}
+            onPress={() => navigation.navigate("RelaxScreen")}
             isSelected={false}
           />
         </View>

@@ -13,6 +13,7 @@ export const RelaxScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: 20
       }}
     >
       <ScrollView
@@ -23,7 +24,7 @@ export const RelaxScreen = () => {
         <View style={styles.btnBox}>
           <BtnRelax
             title="Meditación"
-            onPress={() => navigation.replace("RecursosUserScreen")}
+            onPress={() => navigation.navigate("RecursosUserScreen")}
             isSelected={false}
           />
           <BtnRelax

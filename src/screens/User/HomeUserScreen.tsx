@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { View, Text, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { AuthContext } from "../../context/AuthContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
@@ -7,9 +7,9 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackUserParams } from "../../navigator/UserNavigator";
 
+const  {width, height } = Dimensions.get('window');
 export const HomeUserScreen = () => {
 
-  const  {width } = useWindowDimensions();
   const navigation = useNavigation<StackNavigationProp<RootStackUserParams>>();
   const { authState } = useContext(AuthContext);
   
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
   box1:{
     flex: 2,
     justifyContent: 'center',
+    alignItems: 'center',
     marginHorizontal: 15,
   },
   box2:{
@@ -149,9 +150,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexWrap: 'wrap',
   },
-  // box3:{
-  //   flex: 0.5
-  // },
   title:{
     color: "black",
     fontFamily: "sans-serif",
@@ -175,21 +173,20 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
-    top: -10
   },
   text: {
     fontSize: 18, 
     fontWeight: "500",
     textAlign: "center",
-    marginBottom: 30,  
+    marginBottom: 2,  
     marginHorizontal: 15,
   },
   textLu: {
     fontSize: 18, 
     fontWeight: "500",
     textAlign: "center",
-    bottom: 70,
     marginHorizontal: 15,
+    bottom: 50
   },
   gradient: {
     flex: 1,
