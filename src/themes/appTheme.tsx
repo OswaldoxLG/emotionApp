@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const appTheme = StyleSheet.create({
   globalMarging:{
     marginHorizontal: 10,
-    marginTop: 30,
+    marginTop: 25,
     borderRadius: 10
   },
   globalContainer:{
@@ -98,6 +98,7 @@ export const appTheme = StyleSheet.create({
   texBtn:{
     fontSize: 18,
     fontFamily: 'sans-serif',
+    fontStyle: 'italic',
     color:"black",
     fontWeight: "400",
     marginTop: 10,

@@ -7,8 +7,10 @@ import { ShowUserScreen } from "../screens/Admin/ShowUserScreen";
 import { UserResponse } from "../interfaces/userInterfaces";
 import { GraficosScreen } from "../screens/Admin/GraficosScreen";
 import { EstresScreen } from "../screens/Admin/EstresScreen";
+import { BottomAdminTabNavigator } from "./BottomAdminTabNavigator";
 
 export type RootStackAdminParams = {
+  BottomAdminTabNavigator: undefined;
   DashboardScreen: undefined;
   IndexUserScreen: undefined;
   GraficosScreen: undefined;
@@ -20,7 +22,7 @@ export const AdminNavigator = () => {
     const Stack = createStackNavigator<RootStackAdminParams>();
   return(
     <Stack.Navigator
-    initialRouteName='DashboardScreen'
+    initialRouteName='BottomAdminTabNavigator'
     screenOptions={{
       headerMode: 'float',
       headerShown: false,
@@ -43,6 +45,11 @@ export const AdminNavigator = () => {
       }
     }}    
     >
+      <Stack.Screen
+        name="BottomAdminTabNavigator"
+        component={BottomAdminTabNavigator}
+      />
+
       <Stack.Screen
         name="DashboardScreen"
         component={DashboardScreen}

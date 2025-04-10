@@ -32,10 +32,14 @@ export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
       <View style={appTheme.menuContainer}>
         {/* Navegación de usuario */}
         {authState.role === "usuario" && (
+          <>
           <TouchableOpacity
             style={appTheme.menuBtn}
             activeOpacity={0.9}
-            onPress={() => navigation.navigate("UserNavigator")}
+            onPress={() => navigation.navigate("UserNavigator", { 
+              screen: "BottomTabNavigator",
+              params: { screen: "HomeUserScreen" }
+            })}
           >
             <FontAwesome
               style={appTheme.iconDrawer}
@@ -45,13 +49,81 @@ export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
             />
             <Text style={appTheme.texBtn}>Home</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={appTheme.menuBtn}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate("UserNavigator", { 
+              screen: "BottomTabNavigator",
+              params: { screen: "InfoUserScreen" }
+            })}
+          >
+            <FontAwesome
+              style={appTheme.iconDrawer}
+              name={"bar-chart-o"}
+              size={25}
+              color="gray"
+            />
+            <Text style={appTheme.texBtn}>Estadísticas</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={appTheme.menuBtn}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate("UserNavigator", { 
+              screen: "BottomTabNavigator",
+              params: { screen: "ProfileUserScreen" }
+            })}
+          >
+            <FontAwesome
+              style={appTheme.iconDrawer}
+              name={"user"}
+              size={25}
+              color="gray"
+            />
+            <Text style={appTheme.texBtn}>Mi Perfil</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={appTheme.menuBtn}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate("UserNavigator", { 
+              screen: "BottomTabNavigator",
+              params: { screen: "RecursosUserScreen" }
+            })}
+          >
+            <FontAwesome
+              style={appTheme.iconDrawer}
+              name={"heart"}
+              size={25}
+              color="gray"
+            />
+            <Text style={appTheme.texBtn}>Meditación</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={appTheme.menuBtn}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate("UserNavigator", { 
+              screen: "BottomTabNavigator",
+              params: { screen: "RelaxScreen" }
+            })}
+          >
+            <FontAwesome
+              style={appTheme.iconDrawer}
+              name={"leaf"}
+              size={25}
+              color="gray"
+            />
+            <Text style={appTheme.texBtn}>Respiración</Text>
+          </TouchableOpacity>
+          </>
         )}
         {/* Navegación de administrador */}
         {authState.role === "admin" && (
           <>
             <TouchableOpacity
               style={appTheme.menuBtn}
-              onPress={() => navigation.navigate("AdminNavigator")}
+              onPress={() => navigation.navigate("AdminNavigator", {
+                screen: "BottomAdminTabNavigator",
+                params: { screen: "DashboardScreen" }
+              })}
               activeOpacity={0.9}
             >
               <FontAwesome
@@ -62,13 +134,54 @@ export const DrawerMenu = ({ navigation }: DrawerContentComponentProps) => {
               />
               <Text style={appTheme.texBtn}>Dashboard</Text>
             </TouchableOpacity>
-
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={appTheme.menuBtn}
-              onPress={() => navigation.navigate("UserNavigator")}
+              onPress={() => navigation.navigate("AdminNavigator", {
+                screen: "BottomAdminTabNavigator",
+                params: { screen: "IndexUserScreen" }
+              })}
+              activeOpacity={0.9}
             >
-              <Text style={appTheme.texBtn}>Vista de Usuario</Text>
-            </TouchableOpacity> */}
+              <FontAwesome
+                style={appTheme.iconDrawer}
+                name={"user"}
+                size={25}
+                color="gray"
+              />
+              <Text style={appTheme.texBtn}>Usuarios</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={appTheme.menuBtn}
+              onPress={() => navigation.navigate("AdminNavigator", {
+                screen: "BottomAdminTabNavigator",
+                params: { screen: "GraficosScreen" }
+              })}
+              activeOpacity={0.9}
+            >
+              <FontAwesome
+                style={appTheme.iconDrawer}
+                name={"bar-chart-o"}
+                size={25}
+                color="gray"
+              />
+              <Text style={appTheme.texBtn}>Gráficas</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={appTheme.menuBtn}
+              onPress={() => navigation.navigate("AdminNavigator", {
+                screen: "BottomAdminTabNavigator",
+                params: { screen: "EstresScreen" }
+              })}
+              activeOpacity={0.9}
+            >
+              <FontAwesome
+                style={appTheme.iconDrawer}
+                name={"heartbeat"}
+                size={25}
+                color="gray"
+              />
+              <Text style={appTheme.texBtn}>Estrés</Text>
+            </TouchableOpacity>
           </>
         )}
 

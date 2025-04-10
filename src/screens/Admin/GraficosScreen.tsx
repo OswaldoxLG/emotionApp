@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,8 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  ActivityIndicator, 
+  RefreshControl
 } from "react-native";
 import {
   LineChart,
@@ -13,9 +15,23 @@ import {
   PieChart,
   BarChart,
 } from "react-native-chart-kit";
+import { useSensorApi } from "../../hooks/useSensorApi";
 import { appTheme } from "../../themes/appTheme";
 
 export const GraficosScreen = () => {
+  const { data: bpmData, isLoading: bpmLoading, loadData: reloadBpm } = useSensorApi('bpm', 10);
+  const { data: gsrData, isLoading: gsrLoading, loadData: reloadGsr } = useSensorApi('gsr', 10);
+
+  const refreshData = () => {
+    reloadBpm();
+    reloadGsr();
+  };
+
+  useEffect(() => {
+    const interval = setInterval(refreshData, 10000);
+    return () => clearInterval(interval); 
+  }, []);
+
   const charConfig = {
     backgroundColor: "white", // Fondo
     backgroundGradientFrom: "#1E90FF", // Inicio"#1E90FF"
@@ -33,31 +49,65 @@ export const GraficosScreen = () => {
     },
   };
 
+    const bpmChartData = {
+      labels: bpmData.map((_, index) => (index + 1).toString()),
+      datasets: [
+        {
+          data: bpmData.length > 0 
+            ? bpmData.map(item => item.value) 
+            : [0, 0, 0, 0], 
+        },
+      ],
+    };
+  
+    const gsrChartData = {
+      labels: gsrData.map((_, index) => (index + 1).toString()),
+      datasets: [
+        {
+          data: gsrData.length > 0 
+            ? gsrData.map(item => item.value) 
+            : [0, 0, 0, 0], 
+        },
+      ],
+    };
+
   const height = Dimensions.get("window").height;
   const width = Dimensions.get("window").width;
+
+  if ((bpmLoading || gsrLoading) && (bpmData.length === 0 || gsrData.length === 0)) {
+    return (
+      <View style={{
+        ...appTheme.globalContainer,
+        ...appTheme.globalMarging,
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        <ActivityIndicator
+          color="black"
+          size={75}
+        />
+      </View>
+    );
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={bpmLoading || gsrLoading}
+            onRefresh={refreshData}
+            colors={["pink", "black", "violet"]}
+            progressBackgroundColor="black"
+          />
+        }
       >
         <Text style={appTheme.nametxt}>
           Últimos registros de la frecuencia cardiaca
         </Text>
         <LineChart
-          data={{
-            labels: ["Enero", "Febrero", "Marzo", "Abril"],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-            ],
-          }}
+          data={bpmChartData}
           chartConfig={charConfig}
           width={width * 0.9}
           height={height * 0.3}
@@ -69,23 +119,11 @@ export const GraficosScreen = () => {
           Últimos registros de la respuesta gálvanica de la piel
         </Text>
         <LineChart
-          data={{
-            labels: ["Enero", "Febrero", "Marzo", "Abril"],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-            ],
-          }}
+          data={gsrChartData}
           chartConfig={charConfig}
           width={width * 0.9}
           height={height * 0.3}
-          yAxisLabel=" bpm "
+          yAxisLabel=" µS "
           yAxisInterval={1}
           style={styles.graph}
         />

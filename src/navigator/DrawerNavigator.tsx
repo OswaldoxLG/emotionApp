@@ -24,36 +24,53 @@ export const DrawerNavigator = () => {
     return <AuthNavigator />;
   }
 
-  return (
-    <Drawer.Navigator
-      initialRouteName={
-        authState.role === "admin" ? "AdminNavigator" : "UserNavigator"
-      }
-      screenOptions={{
-        headerShown: false,
-        drawerType: width >= 768 ? "permanent" : "front",
-        drawerPosition: "right",
-        drawerStyle: {
-          backgroundColor: "white",
-          width: width * 0.7,
-        },
-      }}
-      drawerContent={(props) => <DrawerMenu {...props} />}
-    >
-      <Drawer.Screen
-        name="UserNavigator"
-        component={UserNavigator}
-        options={{
-          swipeEnabled: authState.role === "usuario",
+  if (authState.role === "admin") {
+    return (
+      <Drawer.Navigator
+        initialRouteName="AdminNavigator"
+        screenOptions={{
+          headerShown: false,
+          drawerType: width >= 768 ? "permanent" : "front",
+          drawerPosition: "right",
+          drawerStyle: {
+            backgroundColor: "white",
+            width: width * 0.7,
+          },
         }}
-      />
-      <Drawer.Screen
-        name="AdminNavigator"
-        component={AdminNavigator}
-        options={{
-          swipeEnabled: authState.role === "admin",
+        drawerContent={(props) => <DrawerMenu {...props} />}
+      >
+        <Drawer.Screen
+          name="AdminNavigator"
+          component={AdminNavigator}
+          options={{
+            swipeEnabled: true,
+          }}
+        />
+      </Drawer.Navigator>
+    );
+  } else {
+    return (
+      <Drawer.Navigator
+        initialRouteName="UserNavigator"
+        screenOptions={{
+          headerShown: false,
+          drawerType: width >= 768 ? "permanent" : "front",
+          drawerPosition: "right",
+          drawerStyle: {
+            backgroundColor: "white",
+            width: width * 0.7,
+          },
         }}
-      />
-    </Drawer.Navigator>
-  );
+        drawerContent={(props) => <DrawerMenu {...props} />}
+      >
+        <Drawer.Screen
+          name="UserNavigator"
+          component={UserNavigator}
+          options={{
+            swipeEnabled: true,
+          }}
+        />
+      </Drawer.Navigator>
+    );
+  }
 };
