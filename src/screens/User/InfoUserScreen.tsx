@@ -2,11 +2,9 @@ import React, { useEffect} from "react";
 import { Text, View, ScrollView, SafeAreaView, Dimensions, StyleSheet, ActivityIndicator, RefreshControl } from "react-native";
 import {
   LineChart,
-  ProgressChart,
-  PieChart,
-  BarChart,
 } from "react-native-chart-kit";
 import { useSensorApi } from "../../hooks/useSensorApi";
+import { SensorIndicator } from "../../components/SensorIndicator";
 import { appTheme } from "../../themes/appTheme";
 
 export const InfoUserScreen = () => {
@@ -83,7 +81,7 @@ export const InfoUserScreen = () => {
   return(
     <SafeAreaView style={styles.container}>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
@@ -94,6 +92,18 @@ export const InfoUserScreen = () => {
           />
         }
       >
+        <SensorIndicator
+          title="Frecuencia Cardiaca"
+          value={bpmData.length > 0 ? bpmData[0].value : 0}
+          isLoading={bpmLoading}
+          icon="heart"
+        />
+        <SensorIndicator
+          title="Respuesta Gálvanica de la Piel"
+          value={gsrData.length > 0 ? gsrData[0].value : 0}
+          isLoading={gsrLoading}
+          icon="bolt"
+        />
         <Text style={appTheme.nametxt}>
           Últimos registros de la frecuencia cardiaca
         </Text>
@@ -126,10 +136,8 @@ export const InfoUserScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
     marginHorizontal: 15,
+    marginTop: 45
   },
   graph: {
     borderRadius: 20,

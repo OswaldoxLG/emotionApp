@@ -78,9 +78,6 @@ export const GraficosScreen = () => {
     return (
       <View style={{
         ...appTheme.globalContainer,
-        ...appTheme.globalMarging,
-        alignItems: "center",
-        justifyContent: "center"
       }}>
         <ActivityIndicator
           color="black"
@@ -92,7 +89,7 @@ export const GraficosScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
@@ -134,9 +131,6 @@ export const GraficosScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
     marginHorizontal: 15,
   },
   graph: {

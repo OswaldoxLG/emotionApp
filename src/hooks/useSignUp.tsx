@@ -2,6 +2,7 @@ import { useReducer, useState, useEffect, useContext } from "react";
 import { emotionApi } from "../api/emotionApi";
 import { LoginResponse } from "../interfaces/userInterfaces";
 import { AuthContext } from "../context/AuthContext";
+import { Alert } from "react-native";
 
 export interface SignUpData{
   email: string;
@@ -45,18 +46,41 @@ export const useSignUp = () => {
     dispatch( { type: "handleInputChange", payload: { fieldName, value}})
   }
 
+  const validateFields = (): boolean => {
+    if (!state.email) {
+      Alert.alert('Campo vacío', 'El correo electrónico es requerido');
+      return false;
+    }
+    if (!state.username) {
+      Alert.alert('Campo vacío', 'El nombre de usuario es requerido');
+      return false;
+    }
+    if (!state.password) {
+      Alert.alert('Campo vacío', 'La contraseña es requerida');
+      return false;
+    }
+    if (!state.repeatPass) {
+      Alert.alert('Campo vacío', 'Debe confirmar la contraseña');
+      return false;
+    }
+    if (state.password !== state.repeatPass) {
+      Alert.alert('Error', 'Las contraseñas no coinciden');
+      return false;
+    }
+    return true;
+  };
+
   const handleSignUp = async () => {
     setLoading(true);
     setIsEditable(false);
 
-    if (state.password !== state.repeatPass) {
-      alert('Las contraseñas no coinciden');
+    if (!validateFields()) {
       setLoading(false);
       setIsEditable(true);
       return;
     }
 
-    const apiUrl = 'http://192.168.0.195:3000/api/v1/user/signUp/';
+    const apiUrl = 'http://192.168.1.4:3000/api/v1/user/signUp/';
 
     const dataBody = {
       email: state.email,
@@ -64,19 +88,23 @@ export const useSignUp = () => {
       password: state.password
     }
 
-    try{
+    try {
       const response = await emotionApi.post<LoginResponse>(apiUrl, dataBody);
 
-      ( response.data !== false) && ( () => {
+      if (response.data !== false) {
         signIn(response.data.username, response.data.image, response.data.rol, response.data.id_user);
-        setRequest( response.data );
-      })()
-    }catch(error){
+        setRequest(response.data);
+      } else {
+        Alert.alert('Error', 'No se pudo crear la cuenta');
+      }
+    } catch(error) {
       console.log(error);
+      Alert.alert('Error', 'Hubo un problema al crear la cuenta');
       setRequest(false);
+    } finally {
+      setLoading(false);
+      setIsEditable(true);
     }
-    setLoading(false);
-    setIsEditable(true);
   }
 
   return { 

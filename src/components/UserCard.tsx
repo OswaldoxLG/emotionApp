@@ -16,11 +16,9 @@ import { UserResponse } from "../interfaces/userInterfaces";
 interface Props {
   user: UserResponse;
 }
-
 export const UserCard = ({ user }: Props) => {
   const navigation = useNavigation<StackNavigationProp<RootStackAdminParams>>();
   const { width } = Dimensions.get("window");
-
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -47,7 +45,7 @@ export const UserCard = ({ user }: Props) => {
           <Text style={styles.text1}>
             {user?.username
               ? `Username:\n ${user.username}`
-              : "Nombre no disponible"}
+              : "username no disponible"}
           </Text>
           <Text style={styles.text2}>
             {user?.email ? `Correo:\n ${user.email}` : "Correo no disponible"}
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    marginHorizontal: 15,
+    marginHorizontal: 10,
   },
   text1: {
     color: "black",

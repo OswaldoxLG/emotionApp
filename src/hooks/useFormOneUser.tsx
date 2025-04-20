@@ -51,7 +51,7 @@ const formReducer = (state: FormUserData, action: Action) => {
 export const useFormOneUser = ({ id_user }: OneUser) => {
   const [state, dispatch] = useReducer(formReducer, InitialStateUserForm);
 
-  const { updateUser } = useOneUser({ id_user });
+  const { updateUser, deleteUser } = useOneUser({ id_user });
 
   const handleInputChange = (
     fieldName: keyof FormUserData,
@@ -63,7 +63,7 @@ export const useFormOneUser = ({ id_user }: OneUser) => {
   const handleSubmit = () => {
     state.id_user !== "" && updateUser(state);
   };
-
+  
   return {
     state,
     handleInputChange,

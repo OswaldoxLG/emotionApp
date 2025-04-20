@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef} from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, Text, TextInput, StyleSheet, StatusBar, Image, Dimensions, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, Dimensions, SafeAreaView, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SendButton } from '../../components/SendButton';
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +14,7 @@ const { width, height } = Dimensions.get('window');
 export const LoginScreen = () => {
 
   const navigation = useNavigation<StackNavigationProp<RootStackAuthParams>>();
+  const isFirstRender = useRef(true);
 
   const {
     loading, 
@@ -23,6 +24,14 @@ export const LoginScreen = () => {
     handleInputChange, 
     request 
   } = useLogin();
+
+  useEffect( () => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    (!request) &&  Alert.alert('Error al iniciar sesión', 'Credenciales incorrectas');
+  },[request]);
   
   return(
     <SafeAreaView 

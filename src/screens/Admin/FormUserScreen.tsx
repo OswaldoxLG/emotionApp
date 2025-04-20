@@ -57,7 +57,6 @@ export const FormUserScreen = ({ navigation, route }: Props) => {
       allowsEditing: true,
       aspect: [4, 4],
       quality: 0.5,
-      //allowsMultipleSelection: true
     });
     !result.canceled &&
       (() => {
